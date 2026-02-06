@@ -60,16 +60,12 @@ jobs:
           python3 -m pip install --upgrade pip setuptools wheel
           python3 -m pip install Unidecode
 
-      - name: Clone OpenWrt source code
+      - name: Clone OpenWrt source code and apply XG-040G-MD patch files
         run: |
           git clone --depth 1 --branch "$REPO_BRANCH" "$REPO_URL" openwrt
-
-      - name: Apply BELL XG-040G-MD patch files
-        working-directory: ./openwrt
-        run: |
-          [ -e ../patch/02_network ] && cp -f ../patch/02_network ./target/linux/airoha/an7581/base-files/etc/board.d/02_network
-          [ -e ../patch/an7581.mk ] && cp -f ../patch/an7581.mk ./target/linux/airoha/image/an7581.mk
-          [ -e ../patch/an7581-bell_xg-040g-md.dts ] && cp -f ../patch/an7581-bell_xg-040g-md.dts ./target/linux/airoha/dts/an7581-bell_xg-040g-md.dts
+          [ -e patch/02_network ] && cp -f patch/02_network openwrt/target/linux/airoha/an7581/base-files/etc/board.d/02_network
+          [ -e patch/an7581.mk ] && cp -f patch/an7581.mk openwrt/target/linux/airoha/image/an7581.mk
+          [ -e patch/an7581-bell_xg-040g-md.dts ] && cp -f patch/an7581-bell_xg-040g-md.dts openwrt/target/linux/airoha/dts/an7581-bell_xg-040g-md.dts          
 
       - name: Update & Install feeds
         working-directory: ./openwrt
@@ -116,6 +112,7 @@ jobs:
         run: |
           cp -fv "${CONFIG_FILE}" openwrt/.config
           cd openwrt && make defconfig
+          cp openwrt/.config openwrt/defconfig-final.config
 
       - name: Upload build config files
         uses: actions/upload-artifact@v6
@@ -123,6 +120,7 @@ jobs:
           name: build-config
           path: |
             config/xg-040g-md.config
+            openwrt/defconfig-final.config
             openwrt/feeds.conf.default
 
       - name: Download packages
