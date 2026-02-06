@@ -113,7 +113,7 @@ jobs:
         run: |
           cp -fv "${CONFIG_FILE}" openwrt/.config
           cd openwrt && make defconfig
-          cp openwrt/.config openwrt/defconfig-final.config
+          [ -e .config ] && cp .config defconfig-final.config
 
       - name: Upload build config files
         uses: actions/upload-artifact@v6
