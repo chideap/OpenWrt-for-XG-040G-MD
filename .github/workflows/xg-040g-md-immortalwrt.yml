@@ -15,9 +15,9 @@ on:
 
 env:
   CONFIG_FILE: "config/xg-040g-md.config"
-  REPO_URL: https://github.com/xiangtailiang/openwrt.git
+  REPO_URL: https://github.com/immortalwrt/immortalwrt.git
   # REPO_URL: https://github.com/openwrt/openwrt.git
-  REPO_BRANCH: xg040gmd-fixes
+  REPO_BRANCH: openwrt-25.12
   FEEDS_CONF: feeds.conf.default-25.12
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: true
@@ -79,38 +79,6 @@ jobs:
           fi
           ./scripts/feeds update -a
           ./scripts/feeds install -a -f
-          # ./scripts/feeds install \
-          #   airoha-en7581-npu-firmware \
-          #   apk \
-          #   dnsmasq \
-          #   dropbear \
-          #   firewall4 \
-          #   fstools \
-          #   ip-full \
-          #   kmod-gpio-button-hotplug \
-          #   kmod-i2c-an7581 \
-          #   kmod-leds-gpio \
-          #   kmod-phy-airoha-en8811h \
-          #   logd \
-          #   mtd \
-          #   netifd \
-          #   odhcp6c \
-          #   odhcpd-ipv6only \
-          #   ppp \
-          #   ppp-mod-pppoe \
-          #   procd \
-          #   uci \
-          #   uclient-fetch \
-          #   uboot-envtools \
-          #   ubi-utils \
-          #   urandom-seed \
-          #   urngd \
-          #   usign \
-          #   umdns \
-          #   luci \
-          #   luci-base \
-          #   luci-mod-admin-full \
-          #   luci-ssl
 
       - name: Copy configuration and defconfig
         run: |
