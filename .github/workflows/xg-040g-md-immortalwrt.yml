@@ -85,15 +85,6 @@ jobs:
           cp -fv "${CONFIG_FILE}" openwrt/.config
           cd openwrt && make defconfig
           [ -e .config ] && cp .config defconfig-final.config
-      
-      - name: Add LuCI i18n zh-cn
-        working-directory: ./openwrt
-        run: |
-          grep '^CONFIG_PACKAGE_luci-app-.*=y$' .config | sed 's/^CONFIG_PACKAGE_luci-app-\(.*\)=y$/luci-i18n-\1-zh-cn/' | while read i18n; do
-            sed -i "/CONFIG_PACKAGE_${i18n}=/d" .config
-            echo "CONFIG_PACKAGE_${i18n}=y" >> .config
-          done
-          make defconfig
           
       - name: Upload build config files
         uses: actions/upload-artifact@v6
