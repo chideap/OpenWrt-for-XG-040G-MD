@@ -72,6 +72,7 @@ jobs:
           [ -e patch/target.mk ] && cp -f patch/target.mk openwrt/target/linux/airoha/an7581/target.mk
           [ -e patch/config-6.12 ] && cp -f patch/config-6.12 openwrt/target/linux/airoha/an7581/config-6.12
           [ -e patch/netdevices.mk ] && cp -f patch/netdevices.mk openwrt/package/kernel/linux/modules/netdevices.mk
+          [ -e patch/600-mtd-spinand-add-skyhigh-robust-read-workaround.patch ] && cp -f patch/600-mtd-spinand-add-skyhigh-robust-read-workaround.patch openwrt/target/linux/generic/pending-6.12/600-mtd-spinand-add-skyhigh-robust-read-workaround.patch
 
       - name: Update & Install feeds
         working-directory: ./openwrt
