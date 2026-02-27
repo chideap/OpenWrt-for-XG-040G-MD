@@ -73,13 +73,6 @@ jobs:
           [ -e patch/config-6.12 ] && cp -f patch/config-6.12 openwrt/target/linux/airoha/an7581/config-6.12
           [ -e patch/netdevices.mk ] && cp -f patch/netdevices.mk openwrt/package/kernel/linux/modules/netdevices.mk
 
-      - name: Add TurboACC
-        working-directory: ./openwrt
-        run: |
-          curl -sSL https://raw.githubusercontent.com/chenmozhijin/turboacc/luci/add_turboacc.sh -o add_turboacc.sh
-          bash add_turboacc.sh
-          echo "CONFIG_PACKAGE_luci-app-turboacc=y" >> .config
-          
       - name: Update & Install feeds
         working-directory: ./openwrt
         run: |
