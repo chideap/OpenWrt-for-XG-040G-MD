@@ -75,13 +75,6 @@ jobs:
           [ -e patch/netdevices.mk ] && cp -f patch/netdevices.mk openwrt/package/kernel/linux/modules/netdevices.mk
           [ -e patch/901-snand-mtk-bmt-support.patch ] && cp -f patch/901-snand-mtk-bmt-support.patch openwrt/target/linux/airoha/patches-6.12/901-snand-mtk-bmt-support.patch
           [ -e patch/600-mtd-spinand-add-skyhigh-robust-read-workaround.patch ] && cp -f patch/600-mtd-spinand-add-skyhigh-robust-read-workaround.patch openwrt/target/linux/generic/pending-6.12/600-mtd-spinand-add-skyhigh-robust-read-workaround.patch
-
-      - name: Add TurboACC
-        working-directory: ./openwrt
-        run: |
-          curl -sSL https://raw.githubusercontent.com/chenmozhijin/turboacc/luci/add_turboacc.sh -o add_turboacc.sh
-          bash add_turboacc.sh
-          echo "CONFIG_PACKAGE_luci-app-turboacc=y" >> .config
           
       - name: Update & Install feeds
         working-directory: ./openwrt
