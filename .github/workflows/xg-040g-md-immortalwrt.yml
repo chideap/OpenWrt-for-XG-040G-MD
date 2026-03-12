@@ -82,7 +82,6 @@ jobs:
           if [ -e ../$FEEDS_CONF ]; then
             cp -f ../$FEEDS_CONF ./feeds.conf.default
           fi
-          echo "src-git quickfile https://github.com/sbwml/luci-app-quickfile.git" >> ./feeds.conf.default
           ./scripts/feeds update -a
           ./scripts/feeds install -a -f
 
