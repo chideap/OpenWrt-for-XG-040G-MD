@@ -1,2 +1,3 @@
 src-git packages https://github.com/immortalwrt/packages.git;openwrt-25.12
 src-git luci https://github.com/immortalwrt/luci.git;openwrt-25.12
+src-git quickfile https://github.com/sbwml/luci-app-quickfile.git;main
